@@ -22,7 +22,7 @@ const AllOrder = (props) => {
             .catch(() => {
                 setLoadingSingleCycle(false)
             })
-    }, [getOrder.cycleID])
+    }, [getOrder.cycleID,getSingleCycleInfo])
 
     return (
         <>
