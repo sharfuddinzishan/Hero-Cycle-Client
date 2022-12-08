@@ -1,0 +1,12 @@
+/* Banner Section  */
+.banner-section{
+    background-image: linear-gradient(180deg,
+    rgb(245 226 239 / 84%),
+    rgb(108 114 121 / 74%)),
+    url('https://i.ibb.co/dDRQtb3/rsz-categorie-bike2.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    /* position: relative; */
+}

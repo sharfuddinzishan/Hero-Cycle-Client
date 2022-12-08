@@ -1,0 +1,6 @@
+#all-orders th,td,tr{
+    font-size: smaller;
+}
+#adminOrderDetailsBtn,#adminOrderCancelBtn,#adminOrderUpdateBtn,#adminOrderDeleteBtn{
+    font-size: smaller;
+}

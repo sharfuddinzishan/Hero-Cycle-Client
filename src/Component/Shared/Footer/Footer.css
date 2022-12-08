@@ -1,0 +1,10 @@
+.footer-background {
+    background-image: linear-gradient(180deg,
+    rgb(245 226 239 / 84%),
+    rgb(108 114 121 / 74%)),
+    url(https://i.ibb.co/s2v1vvD/Pngtree-white-half-of-the-car-853989.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
