@@ -15,7 +15,8 @@ const AllOrder = (props) => {
             .then(result => {
                 if (result?.data?.model) {
                     setSingleCycleInfo(result.data);
-                    setLoadingSingleCycle(false)
+                    setLoadingSingleCycle(false);
+                    console.log(getSingleCycleInfo);
                 }
             })
             .catch(() => {
