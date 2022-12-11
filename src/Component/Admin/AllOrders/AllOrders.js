@@ -25,8 +25,10 @@ const AllOrders = () => {
                     setLoader(false)
                 }
             })
-            .catch(e => { })
-            .finally(() => { setLoader(false) });
+            .catch(e => { setLoader(false);})
+            .finally(() => { 
+                // setLoader(false) 
+            });
     }, [refreshed])
 
     const token = localStorage.getItem('tokenID')
@@ -41,13 +43,12 @@ const AllOrders = () => {
             orderStatus === 'cancel' ||
                 axios.put(`https://hero-cycle-server-side-production.up.railway.app/order/${orderID}?action=cancel`, { headers })
                     .then(result => {
-                        console.log(result)
                         if (result.data.modifiedCount === '0') { alert('Failed'); setRefreshed(false) }
                         else setRefreshed(true);
                     })
                     .catch(() => setRefreshed(false))
                     .finally(() => {
-                        setRefreshed(false);
+                        // setRefreshed(false);
                     })
         }
     }
@@ -56,16 +57,15 @@ const AllOrders = () => {
         const prompt = window.confirm('Want To Delete  Order?');
         if (prompt === true) {
             setRefreshed(false);
-            console.log(headers)
+            // console.log(headers)
             axios.delete(`https://hero-cycle-server-side-production.up.railway.app/order/${orderID}`, { headers })
                 .then(result => {
-                    console.log(result)
                     if (result.data.deletedCount === '0') { alert('Failed'); setRefreshed(false) }
                     else setRefreshed(true);
                 })
                 .catch(() => setRefreshed(false))
                 .finally(() => {
-                    setRefreshed(false);
+                    // setRefreshed(false);
                 })
         }
     }

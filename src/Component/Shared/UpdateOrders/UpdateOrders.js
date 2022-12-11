@@ -45,7 +45,7 @@ const UpdateOrders = (props) => {
         setRefreshed(false)
         axios.put('https://hero-cycle-server-side-production.up.railway.app/order', getSingleOrderDetails, { headers })
             .then(result => {
-                console.log(result)
+                // console.log(result)
                 if (!result?.data?.modifiedCount) { setError(true) }
                 else {
                     setSuccess(true)

@@ -6,7 +6,7 @@ const AllOrder = (props) => {
     // set Order to parent state to trigger which button and which modal need to call 
     const setOrderID = props.setOrderID
     const setSingleOrderDetails = props.setSingleOrderDetails
-    const [getSingleCycleInfo, setSingleCycleInfo] = useState({});
+    // const [getSingleCycleInfo, setSingleCycleInfo] = useState({});
     let [loadingSingleCycle, setLoadingSingleCycle] = useState(true);
 
     useEffect(() => {
@@ -14,15 +14,14 @@ const AllOrder = (props) => {
         axios.get(`https://hero-cycle-server-side-production.up.railway.app/cycles/${getOrder.cycleID}`)
             .then(result => {
                 if (result?.data?.model) {
-                    setSingleCycleInfo(result.data);
+                    // setSingleCycleInfo(result.data);
                     setLoadingSingleCycle(false);
-                    console.log(getSingleCycleInfo);
                 }
             })
             .catch(() => {
                 setLoadingSingleCycle(false)
             })
-    }, [getOrder.cycleID,getSingleCycleInfo])
+    }, [getOrder.cycleID])
 
     return (
         <>
