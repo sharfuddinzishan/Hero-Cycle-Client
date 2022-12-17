@@ -34,7 +34,7 @@ function Account() {
                                                 <div className="form-check">
                                                     <input key={Math.random()} onChange={() => setToggle(!toggle)} className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
                                                     <label className="form-check-label" htmlFor="flexCheckDefault">
-                                                        Want To Create New Account?
+                                                        have Account?
                                                     </label>
                                                 </div>
                                             </>
@@ -43,7 +43,7 @@ function Account() {
                                                 <div className="form-check">
                                                     <input key={Math.random()} onChange={() => setToggle(!toggle)} className="form-check-input" type="checkbox" value="" id="flexCheckChecked" />
                                                     <label className="form-check-label" htmlFor="flexCheckChecked">
-                                                        Have Account Already?
+                                                        Want To Create New Account?
                                                     </label>
                                                 </div>
                                             </>

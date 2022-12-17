@@ -5,6 +5,51 @@ import useAuth from '../../Hooks/useAuth';
 import './OrderNow.css'
 
 const OrderNow = () => {
+
+//     const cycles=[
+//         {
+//             _id:1,
+//             model:"X-Factor 26T",
+//             price:"7625"
+//         },
+//         {
+//             _id:2,
+//             model:"THORN 26T 21SPD FS",
+//             price:"12985"
+//         },
+//         {
+//             _id:3,
+//             model:"MASSIVE 20T SS DD",
+//             price:"7770"
+//         },
+//     ]
+
+//     /* Find Details of cycleID 2 
+//     which is ordered by user */
+//     let orderedCycleID=2
+//     let orderedCycleDetails=cycles.find(data=>data._id=orderedCycleID)
+//     console.log(orderedCycleDetails)
+
+//     /* Get sum of all cycles price 
+//     or ordered cycles price of total */
+//     let total=cycles.reduce((sum,data)=>sum+=+data.price,0)
+//     console.log(total)
+
+//     /* Double the value of each array 
+//     and stored in another array 
+//     Note: map return an array*/
+//     let newCycles=cycles.map(data=>data.price*2)
+//     console.log(newCycles)
+
+//   /* Double the value of each array 
+//     and consoled each value.
+//     Note: forEach not return any value */
+//     cycles.forEach(data=>console.log(data.price*2))
+
+
+
+
+
     const { user } = useAuth()
     let { cycleID } = useParams();
 
