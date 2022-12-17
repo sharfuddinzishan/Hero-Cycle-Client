@@ -21,7 +21,7 @@ const MakeAdmin = () => {
             "authorization": 'Bearer ' + token
         };
         const user = { email, pass }
-        axios.put('https://hero-cycle-server-side-production.up.railway.app/user/admin', user, { headers })
+        axios.put('http://localhost:4000/user/admin', user, { headers })
             .then(result => {
                 console.log(result)
                 if (result.data.modifiedCount) {
@@ -56,6 +56,8 @@ const MakeAdmin = () => {
                         label="Email"
                         name="email"
                         onBlur={handleInput}
+                        placeholder="Provide Email Address"
+                        defaultValue="abc@gmail.com"
                         style={{ width: '60%' }}
                     />
                     <input
@@ -63,6 +65,8 @@ const MakeAdmin = () => {
                         label="Password"
                         name="pass"
                         onBlur={handleInputPass}
+                        placeholder="Provide Password To Login"
+                        defaultValue="aBC1234"
                         style={{ width: '60%' }}
                     />
                     <br /><br />

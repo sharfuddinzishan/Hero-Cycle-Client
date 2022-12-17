@@ -1,14 +1,14 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 const SingleOrderDetails = (props) => {
-    const orderID = props.orderID
+    // const orderID = props.orderID
     const getSingleOrderDetails = props.getSingleOrderDetails || {}
     const [getSingleCycleInfo, setSingleCycleInfo] = useState({});
     let [loadingCycleInfo, setLoadingCycleInfo] = useState(true);
 
     useEffect(() => {
         setLoadingCycleInfo(true)
-        axios.get(`https://hero-cycle-server-side-production.up.railway.app/cycles/${getSingleOrderDetails.cycleID}`)
+        axios.get(`http://localhost:4000/cycles/${getSingleOrderDetails.cycleID}`)
             .then(result => {
                 if (result?.data?.model) {
                     setSingleCycleInfo(result.data);
@@ -18,13 +18,13 @@ const SingleOrderDetails = (props) => {
             .catch(() => {
                 setLoadingCycleInfo(false);
             })
-    }, [orderID,getSingleOrderDetails.cycleID])
+    }, [getSingleOrderDetails.cycleID])
 
 
 
     return (
         <div className="container p-3">
-            <h1 className="text-center">Details of <span className="fw-bold text-info">{getSingleCycleInfo.model}</span></h1>
+            <h1 className="text-center">Details of <span className="fw-bold text-info">{!loadingCycleInfo && getSingleCycleInfo.model}</span></h1>
             <div className="row">
                 {
                     !loadingCycleInfo && <>

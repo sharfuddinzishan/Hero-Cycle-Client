@@ -11,7 +11,7 @@ const AllBicycles = () => {
     const [loader, setLoader] = useState(false);
     useEffect(() => {
         setLoader(true);
-        let url = "https://hero-cycle-server-side-production.up.railway.app/cycles";
+        let url = "http://localhost:4000/cycles";
         axios.get(url)
             .then(result => {
                 if (result.data) {
@@ -27,7 +27,7 @@ const AllBicycles = () => {
         const prompt = window.confirm('Want To Delete Cycle?');
         if (prompt === true) {
             setRefreshed(false);
-            axios.delete(`https://hero-cycle-server-side-production.up.railway.app/cycles/${cycleID}`)
+            axios.delete(`http://localhost:4000/cycles/${cycleID}`)
                 .then(result => {
                     if (result.data.deletedCount === '0') {
                         alert('Failed To Delete Cycle');

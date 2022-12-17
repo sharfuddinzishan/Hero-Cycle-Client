@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
+import { useParams, useHistory } from 'react-router';
 import useAuth from '../../Hooks/useAuth';
 import './OrderNow.css'
 
@@ -47,10 +47,10 @@ const OrderNow = () => {
 //     cycles.forEach(data=>console.log(data.price*2))
 
 
-
-
-
-    const { user } = useAuth()
+    const { user,isAdmin } = useAuth()
+    console.log('Admin ', isAdmin)
+    console.log('User ', user)
+    let history=useHistory()
     let { cycleID } = useParams();
 
     const [getSingleCycleInfo, setSingleCycleInfo] = useState({});
@@ -63,10 +63,10 @@ const OrderNow = () => {
     let headers = {
         "authorization": 'Bearer ' + token
     };
-
+    
     useEffect(() => {
         setLoading(true)
-        axios.get(`https://hero-cycle-server-side-production.up.railway.app/cycles/${cycleID}`)
+        axios.get(`http://localhost:4000/cycles/${cycleID}`)
             .then(result => {
                 if (result?.data?.model) {
                     setSingleCycleInfo(result.data);
@@ -101,11 +101,12 @@ const OrderNow = () => {
         setSuccess(false)
         setError(false)
 
-        axios.post('https://hero-cycle-server-side-production.up.railway.app/order', copyCycle, { headers })
+        axios.post('http://localhost:4000/order', copyCycle, { headers })
             .then(result => {
                 if (result.data.status === 401) { setError(true) }
                 else {
                     setSuccess(true)
+                    history.replace('/dashboard/user/show/orders')
                 }
             })
             .catch(e => setError(true))
@@ -115,6 +116,9 @@ const OrderNow = () => {
     return (
         <div id="orderNow" className="container-fluid py-3 px-5">
             <div className="row">
+                {
+                    loading  && <span className='fs-3 fw-bold text-info'>Loading Information.....</span>
+                }
                 {
                     !loading && <>
                         {/* Start of Order Form  */}
@@ -144,7 +148,7 @@ const OrderNow = () => {
                                             className="form-control form-control-sm"
                                             id="orderBy"
                                             name="orderBy"
-                                            placeholder="Provide Model"
+                                            placeholder="Provide Your Name"
                                             required
                                             onBlur={handleInput}
                                             defaultValue={user?.displayName}
@@ -160,6 +164,19 @@ const OrderNow = () => {
                                             readOnly
                                         />
                                     </div>
+                                <div className="mb-0 mb-md-1">
+                                    <label htmlFor="contactNumber" className="form-label fs-6 fw-bold">Contact Number</label>
+                                    <input
+                                        type="phone"
+                                        className="form-control form-control-sm"
+                                        id="contactNumber"
+                                        name="contactNumber"
+                                        placeholder="Provide Your Mobile Number"
+                                        required
+                                        defaultValue={user?.phoneNumber}
+                                        onBlur={handleInput}
+                                    />
+                                </div>
                                     <div className="mb-0 mb-md-1">
                                         <label htmlFor="price" className="form-label fs-6 fw-bold">Total Price (Taka)</label>
                                         <input
@@ -186,17 +203,20 @@ const OrderNow = () => {
                                     />
                                 </div>
                                 <div className="mb-0 mb-md-1">
-                                    <label htmlFor="orderNotes" className="form-label fs-6 fw-bold">Order Notes (optional)</label>
+                                    <label htmlFor="orderNotes" className="form-label fs-6 fw-bold">Transaction Related Information</label>
                                     <textarea
                                         className="form-control form-control-sm"
                                         rows="3"
                                         id="orderNotes"
                                         name="orderNotes"
-                                        placeholder="Provide Your Query, if have"
+                                        placeholder="Provide Transaction Number"
+                                        required
                                         onBlur={handleInput}
                                     />
                                 </div>
-                                <button className="d-block ms-auto btn btn-primary fw-bold">Checkout</button>
+                                {
+                                    !isAdmin && user?.email && <button className="d-block ms-auto btn btn-primary fw-bold">Checkout</button>
+                                }
                             </form>
                         </div>
                         {/* End Of Order Form  */}

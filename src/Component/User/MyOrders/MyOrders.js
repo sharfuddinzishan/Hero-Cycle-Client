@@ -15,7 +15,7 @@ const MyOrders = () => {
 
     useEffect(() => {
         setLoader(true);
-        let url = `https://hero-cycle-server-side-production.up.railway.app/user/orders?email=${user?.email}`
+        let url = `http://localhost:4000/user/orders?email=${user?.email}`
         axios.get(url)
             .then(result => {
                 console.log(result?.data.length)
@@ -36,16 +36,16 @@ const MyOrders = () => {
         const prompt = window.confirm('Want To Cancel  Order?');
         if (prompt === true) {
             setRefreshed(false);
-            (orderStatus === 'cancel' || orderStatus === 'confirm') ||
-                axios.put(`https://hero-cycle-server-side-production.up.railway.app/order/${orderID}?action=cancel`, { headers })
+            
+                axios.put(`http://localhost:4000/order/${orderID}?action=cancel`, { headers })
                     .then(result => {
-                        console.log(result)
+                        // console.log(result)
                         if (result.data.modifiedCount === '0') { alert('Failed'); setRefreshed(false) }
                         else setRefreshed(true);
                     })
                     .catch(() => setRefreshed(false))
                     .finally(() => {
-                        setRefreshed(false);
+                        // setRefreshed(false);
                     })
         }
     }
@@ -54,16 +54,16 @@ const MyOrders = () => {
         const prompt = window.confirm('Want To Delete  Order?');
         if (prompt === true) {
             setRefreshed(false);
-            console.log(headers)
-            orderStatus !== 'confirm' && axios.delete(`https://hero-cycle-server-side-production.up.railway.app/order/${orderID}`, { headers })
+            // console.log(headers)
+            orderStatus !== 'confirm' && axios.delete(`http://localhost:4000/order/${orderID}`, { headers })
                 .then(result => {
-                    console.log(result)
+                    // console.log(result)
                     if (result.data.deletedCount === '0') { alert('Failed'); setRefreshed(false) }
                     else setRefreshed(true);
                 })
                 .catch(() => setRefreshed(false))
                 .finally(() => {
-                    setRefreshed(false);
+                    // setRefreshed(false);
                 })
         }
     }
@@ -130,7 +130,7 @@ const MyOrders = () => {
             {
                 <>
                     <UpdateOrders setRefreshed={setRefreshed} getOrderID={getOrderID}></UpdateOrders>
-                    <SingleOrderModal getSingleOrderDetails={getSingleOrderDetails} getOrderID={getOrderID}></SingleOrderModal>
+                    <SingleOrderModal getSingleOrderDetails={getSingleOrderDetails}></SingleOrderModal>
                 </>
             }
         </>

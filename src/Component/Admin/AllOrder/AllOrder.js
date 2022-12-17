@@ -11,7 +11,7 @@ const AllOrder = (props) => {
 
     useEffect(() => {
         setLoadingSingleCycle(true)
-        axios.get(`https://hero-cycle-server-side-production.up.railway.app/cycles/${getOrder.cycleID}`)
+        axios.get(`http://localhost:4000/cycles/${getOrder.cycleID}`)
             .then(result => {
                 if (result?.data?.model) {
                     // setSingleCycleInfo(result.data);
@@ -40,7 +40,8 @@ const AllOrder = (props) => {
                         </button>
                     </td>
                     <td>{getOrder.price}</td>
-                    <td>{getOrder.email}</td>
+                    <td>{getOrder.contactNumber||'N/A'}</td>
+                    <td>{getOrder.email||'N/A'}</td>
                     <td>{getOrder.orderBy}</td>
                     <td>{getOrder.orderStatus}</td>
                 </>}

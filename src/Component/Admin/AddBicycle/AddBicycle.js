@@ -32,7 +32,7 @@ const AddBicycle = () => {
         e.preventDefault();
         setSuccess(false)
         setError(false)
-        axios.post('https://hero-cycle-server-side-production.up.railway.app/cycle', singleCycle, { headers })
+        axios.post('http://localhost:4000/cycle', singleCycle, { headers })
             .then(result => {
                 if (result.data.status === 401) { setError(true) }
                 else { setSuccess(true) }

@@ -2,7 +2,7 @@ import React from 'react';
 import SingleOrderDetails from '../SingleOrderDetails/SingleOrderDetails';
 
 const SingleOrderModal = (props) => {
-    const orderID = props.getOrderID || ''
+    // const orderID = props.getOrderID || ''
     const getSingleOrderDetails = props.getSingleOrderDetails || {}
     return (
         <div className="modal fade" id="detailsModal" tabIndex="-1" aria-labelledby="detailsModal" aria-hidden="true">
@@ -12,7 +12,7 @@ const SingleOrderModal = (props) => {
                         <button type="button" className="btn btn-secondary d-block ms-auto" data-bs-dismiss="modal">Close</button>
                     </div>
                     <div className="modal-body">
-                        <SingleOrderDetails orderID={orderID} getSingleOrderDetails={getSingleOrderDetails}></SingleOrderDetails>
+                        <SingleOrderDetails getSingleOrderDetails={getSingleOrderDetails}></SingleOrderDetails>
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>

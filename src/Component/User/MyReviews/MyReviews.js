@@ -1,22 +1,23 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import useAuth from './../../../Hooks/useAuth';
 
 const MyReviews = () => {
-    const [loadingReview, setLoadingReview] = useState(false);
-    const [reviewAction, setReviewAction] = useState(false);
+    const {user}=useAuth()
+    const [loadingReview, setLoadingReview] = useState(true);
+    // const [reviewAction, setReviewAction] = useState(false);
     const [reviews, setReviews] = useState([]);
 
     useEffect(() => {
-        setLoadingReview(false);
-        axios.get('https://hero-cycle-server-side-production.up.railway.app/reviews')
+        axios.get(`http://localhost:4000/user/reviews?email=${user?.email}`)
             .then(result => {
                 if (result.data) {
                     setReviews(result.data)
-                    setLoadingReview(true);
+                    setLoadingReview(false);
                 }
             })
-            .catch(() => { })
-    }, [reviewAction])
+            .catch(() => {setLoadingReview(true) })
+    }, [user.email,loadingReview])
 
     const handleReviewDelete = (reviewID) => {
         const token = localStorage.getItem('tokenID')
@@ -29,15 +30,17 @@ const MyReviews = () => {
             return
         }
         else {
-            setReviewAction(false);
-            axios.delete(`https://hero-cycle-server-side-production.up.railway.app/reviews/${reviewID}`, { headers })
+            // setReviewAction(false);
+            setLoadingReview(true);
+            axios.delete(`http://localhost:4000/reviews/${reviewID}`, { headers })
                 .then(result => {
                     if (result.data.deletedCount) {
-                        setReviewAction(true);
+                        // setReviewAction(true);
+                        setLoadingReview(false);
                     }
                 })
-                .catch(() => { })
-                .finally(() => setReviewAction(false))
+                .catch(() => {setLoadingReview(true) })
+                .finally()
         }
     }
 
@@ -58,7 +61,7 @@ const MyReviews = () => {
                 </thead>
                 <tbody>
                     {
-                        !loadingReview && <> <div className="spinner-grow text-primary text-center" role="status">
+                        loadingReview && <> <div className="spinner-grow text-primary text-center" role="status">
                             <span className="visually-hidden">Loading Reviews</span>
                         </div>
                             <div className="spinner-grow text-primary text-center" role="status">
@@ -67,7 +70,7 @@ const MyReviews = () => {
                         </>
                     }
                     {
-                        loadingReview && reviews.map((review, index) => {
+                        !loadingReview && reviews.map((review, index) => {
                             return <tr key={index}>
                                 <th scope="row">{index + 1}</th>
                                 <td>{review.subject}</td>

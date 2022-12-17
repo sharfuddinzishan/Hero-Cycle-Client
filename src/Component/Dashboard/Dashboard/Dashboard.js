@@ -17,10 +17,37 @@ import {
 } from "react-router-dom";
 import useFirebase from '../../../Hooks/useFirebase';
 import MakeAdmin from '../../Admin/MakeAdmin/MakeAdmin';
+import UserRoute from './../../../PrivateRoute/UserRoute';
 
 const Dashboard = () => {
     let { path, url } = useRouteMatch();
-    let { isAdmin, logOut } = useFirebase();
+    let { isAdmin, logOut,loadingAdmin } = useFirebase();
+    if (loadingAdmin) return <div className='text-center'>
+        <div className="spinner-border text-primary" role="status">
+            <span className="visually-hidden">Loading...</span>
+        </div>
+        <div className="spinner-border text-secondary" role="status">
+            <span className="visually-hidden">Loading...</span>
+        </div>
+        <div className="spinner-border text-success" role="status">
+            <span className="visually-hidden">Loading...</span>
+        </div>
+        <div className="spinner-border text-danger" role="status">
+            <span className="visually-hidden">Loading...</span>
+        </div>
+        <div className="spinner-border text-warning" role="status">
+            <span className="visually-hidden">Loading...</span>
+        </div>
+        <div className="spinner-border text-info" role="status">
+            <span className="visually-hidden">Loading...</span>
+        </div>
+        <div className="spinner-border text-light" role="status">
+            <span className="visually-hidden">Loading...</span>
+        </div>
+        <div className="spinner-border text-dark" role="status">
+            <span className="visually-hidden">Loading...</span>
+        </div>
+    </div>;
 
     return (
         <>
@@ -156,18 +183,18 @@ const Dashboard = () => {
                             <AdminRoute path={`${path}/admin/makeadmin`}>
                                 <MakeAdmin></MakeAdmin>
                             </AdminRoute>
-                            <Route path={`${path}/user/show/orders`}>
+                            <UserRoute path={`${path}/user/show/orders`}>
                                 <MyOrders></MyOrders>
-                            </Route>
-                            <Route path={`${path}/user/add/reviews`}>
+                            </UserRoute>
+                            <UserRoute path={`${path}/user/add/reviews`}>
                                 <AddReviews></AddReviews>
-                            </Route>
-                            <Route path={`${path}/user/show/reviews`}>
+                            </UserRoute>
+                            <UserRoute path={`${path}/user/show/reviews`}>
                                 <MyReviews></MyReviews>
-                            </Route>
-                            <Route path={`${path}/user/payments`}>
+                            </UserRoute>
+                            <UserRoute path={`${path}/user/payments`}>
                                 <Pay></Pay>
-                            </Route>
+                            </UserRoute>
                         </Switch>
                     </div>
                 </div>

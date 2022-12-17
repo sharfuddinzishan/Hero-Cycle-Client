@@ -31,6 +31,7 @@ const Header = () => {
                                     !user?.email &&
                                     <>
                                         <li className="nav-item">
+                                            {/* Used To highlight  */}
                                             <NavLink className="nav-link"
                                                 to="/account"
                                                 activeStyle={{
@@ -45,16 +46,6 @@ const Header = () => {
                                 {
                                     user?.email ?
                                         <>
-                                            {/* <li className="nav-item">
-                                                <NavLink className="nav-link"
-                                                    to="/orderus"
-                                                    activeStyle={{
-                                                        fontWeight: "bold",
-                                                        color: "#636"
-                                                    }}>
-                                                    Order Us
-                                                </NavLink>
-                                            </li> */}
                                             <li className="nav-item">
                                                 <NavLink className="nav-link"
                                                     to="/dashboard"
@@ -65,63 +56,6 @@ const Header = () => {
                                                     Dashboard
                                                 </NavLink>
                                             </li>
-                                            {/* <li className="nav-item dropdown">
-                                                <button className="btn btn-sm btn-primary nav-link dropdown-toggle" id="navbarDarkDropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    Dashboard
-                                                </button>
-                                                <ul className="dropdown-menu " aria-labelledby="navbarDarkDropdownMenuLink">
-                                                    <li className="dropdown-item">
-                                                        <NavLink className="nav-link"
-                                                            to="/admin/add/bycycle"
-                                                            activeStyle={{
-                                                                fontWeight: "bold",
-                                                                color: "#636"
-                                                            }}>
-                                                            Add Bicycle
-                                                        </NavLink>
-                                                    </li>
-                                                    <li className="dropdown-item">
-                                                        <NavLink className="nav-link"
-                                                            to="/admin/show/bicycles"
-                                                            activeStyle={{
-                                                                fontWeight: "bold",
-                                                                color: "#636"
-                                                            }}>
-                                                            All Bicycles
-                                                        </NavLink>
-                                                    </li>
-                                                    <li className="dropdown-item">
-                                                        <NavLink className="nav-link"
-                                                            to="/admin/show/orders"
-                                                            activeStyle={{
-                                                                fontWeight: "bold",
-                                                                color: "#636"
-                                                            }}>
-                                                            All Orders
-                                                        </NavLink>
-                                                    </li>
-                                                    <li className="dropdown-item">
-                                                        <NavLink className="nav-link"
-                                                            to="/user/add/reviews"
-                                                            activeStyle={{
-                                                                fontWeight: "bold",
-                                                                color: "#636"
-                                                            }}>
-                                                            Add Reviews
-                                                        </NavLink>
-                                                    </li>
-                                                    <li className="dropdown-item">
-                                                        <NavLink className="nav-link"
-                                                            to="/user/show/reviews"
-                                                            activeStyle={{
-                                                                fontWeight: "bold",
-                                                                color: "#636"
-                                                            }}>
-                                                            Update Reviews
-                                                        </NavLink>
-                                                    </li>
-                                                </ul>
-                                            </li> */}
                                             <li className="nav-item">
                                                 <NavLink onClick={logOut} className="nav-link"
                                                     to="/"

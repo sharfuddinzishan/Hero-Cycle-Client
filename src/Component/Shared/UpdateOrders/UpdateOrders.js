@@ -13,7 +13,7 @@ const UpdateOrders = (props) => {
         setLoading(true)
         setSuccess(false)
         setError(false)
-        axios.get(`https://hero-cycle-server-side-production.up.railway.app/orders/${getOrderID}`)
+        axios.get(`http://localhost:4000/orders/${getOrderID}`)
             .then(result => {
                 if (result?.data?.model) {
                     setSingleOrderDetails(result.data);
@@ -43,7 +43,7 @@ const UpdateOrders = (props) => {
         setSuccess(false)
         setError(false)
         setRefreshed(false)
-        axios.put('https://hero-cycle-server-side-production.up.railway.app/order', getSingleOrderDetails, { headers })
+        axios.put('http://localhost:4000/order', getSingleOrderDetails, { headers })
             .then(result => {
                 // console.log(result)
                 if (!result?.data?.modifiedCount) { setError(true) }

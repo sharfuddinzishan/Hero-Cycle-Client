@@ -3,16 +3,16 @@ import React, { useEffect, useState } from 'react';
 
 const MyOrder = (props) => {
     const getOrder = props.order || {}
-    const setOrderID = props.setOrderID
+    // const setOrderID = props.setOrderID
     const setSingleOrderDetails = props.setSingleOrderDetails
     const [getSingleCycleInfo, setSingleCycleInfo] = useState({});
     let [loadingSingleCycle, setLoadingSingleCycle] = useState(true);
 
     useEffect(() => {
         setLoadingSingleCycle(true)
-        axios.get(`https://hero-cycle-server-side-production.up.railway.app/cycles/${getOrder.cycleID}`)
+        axios.get(`http://localhost:4000/cycles/${getOrder.cycleID}`)
             .then(result => {
-                console.log(result)
+                // console.log(result)
                 if (result?.data?.model) {
                     setSingleCycleInfo(result.data);
                     setLoadingSingleCycle(false)
@@ -36,7 +36,7 @@ const MyOrder = (props) => {
                                     className="btn btn-sm btn-outline-primary"
                                     data-bs-toggle="modal"
                                     data-bs-target="#detailsModal"
-                                    onClick={() => { setOrderID(getOrder._id); setSingleOrderDetails(getOrder) }}
+                                    onClick={() => { setSingleOrderDetails(getOrder) }}
                                 >
                                     {getOrder?.model}
                                 </button>

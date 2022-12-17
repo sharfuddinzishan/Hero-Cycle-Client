@@ -23,16 +23,16 @@ const AddReviews = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const getReview = { ...review }
-        console.log(getReview)
+        // console.log(getReview)
         const token = localStorage.getItem('tokenID')
         let headers = {
             "authorization": 'Bearer ' + token
         };
         setSuccess(false)
         setError(false)
-        axios.post('https://hero-cycle-server-side-production.up.railway.app/reviews', getReview, { headers })
+        axios.post('http://localhost:4000/reviews', getReview, { headers })
             .then(result => {
-                console.log('Revies ', result)
+                // console.log('Revies ', result)
                 if (!result.data.insertedId) { setError(true) }
                 else { setSuccess(true) }
             })

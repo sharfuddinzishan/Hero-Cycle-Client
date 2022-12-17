@@ -86,12 +86,12 @@ const useFirebase = () => {
     }
 
     const addUserToDB = (email, userName, isGoogleSignIn) => {
-        let url = `https://hero-cycle-server-side-production.up.railway.app/user?email=${email}`
+        let url = `http://localhost:4000/user?email=${email}`
         axios.get(url)
             .then(result => {
                 if ((isGoogleSignIn && !result.data.email) || !isGoogleSignIn) {
                     const newUser = { email, userName, role: 'user' }
-                    axios.post(`https://hero-cycle-server-side-production.up.railway.app/users`, newUser)
+                    axios.post(`http://localhost:4000/users`, newUser)
                         .then(result => {
                             setUserFullName(userName);
                             alert('User Registered Successfully!')
@@ -117,11 +117,14 @@ const useFirebase = () => {
         const unsubscribe = onAuthStateChanged(auth, user => {
             setError('')
             if (user) {
-                let url = `https://hero-cycle-server-side-production.up.railway.app/user/admin?email=${user.email}`;
+                let url = `http://localhost:4000/user/admin?email=${user.email}`;
                 axios.get(url)
                     .then(result => {
                         if (result.data) {
                             setIsAdmin(true);
+                        }
+                        else{
+                            setIsAdmin(false);
                         }
                     })
                     .finally(() => setLoadingAdmin(false))
@@ -138,7 +141,7 @@ const useFirebase = () => {
     }, [auth]);
 
     // useEffect(() => {
-    //     let url = `https://hero-cycle-server-side-production.up.railway.app/user/admin?email=${user.email}`;
+    //     let url = `http://localhost:4000/user/admin?email=${user.email}`;
     //     axios.get(url)
     //         .then(result => {
     //             if (result.data) {
