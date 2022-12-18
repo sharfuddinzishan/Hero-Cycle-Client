@@ -1,9 +1,12 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import useAuth from '../../../Hooks/useAuth';
 import SingleOrderModal from '../../Shared/SingleOrderModal/SingleOrderModal';
 import UpdateOrders from '../../Shared/UpdateOrders/UpdateOrders';
 import MyOrder from '../MyOrder/MyOrder';
+
+
 
 const MyOrders = () => {
     const [getOrderID, setOrderID] = useState('');
@@ -120,6 +123,10 @@ const MyOrders = () => {
                                         >
                                             Delete Order
                                         </button>
+                                        {                                        
+                                        !order?.paid && <Link className="nav-link" to={`payments/${order._id}`}>
+                                                    Pay
+                                                </Link>}
                                     </div>
                                 </div>
                             })

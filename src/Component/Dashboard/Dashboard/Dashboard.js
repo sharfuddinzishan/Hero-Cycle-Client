@@ -195,6 +195,9 @@ const Dashboard = () => {
                             <UserRoute path={`${path}/user/payments`}>
                                 <Pay></Pay>
                             </UserRoute>
+                            <UserRoute path={`${path}/user/show/payments/:orderID`}>
+                                <Pay></Pay>
+                            </UserRoute>
                         </Switch>
                     </div>
                 </div>

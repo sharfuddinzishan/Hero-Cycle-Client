@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
 const MyOrder = (props) => {
+    console.log("Check Order ",props.order)
     const getOrder = props.order || {}
     // const setOrderID = props.setOrderID
     const setSingleOrderDetails = props.setSingleOrderDetails
