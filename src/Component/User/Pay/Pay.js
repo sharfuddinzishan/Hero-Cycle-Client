@@ -11,7 +11,7 @@ const Pay = () => {
     const [getSingleOrderDetails, setSingleOrderDetails] = useState({});
     const [load,setLoad]=useState(false)
     useEffect(() => {
-        axios.get(`http://localhost:4000/orders/${orderID}`)
+        axios.get(`https://hero-cycle-server-production.up.railway.app/orders/${orderID}`)
             .then(result => {
                 console.log(result)
                 console.log(result.data)
