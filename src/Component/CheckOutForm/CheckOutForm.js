@@ -11,12 +11,13 @@ const CheckOutForm = ({orderID,OrderPrice}) => {
     const [clientSecret,setClientSecret]=useState('')
     
 
-    const price =+OrderPrice
+    const price =+OrderPrice ||1220
+    // const price =1220
     const getOrderId=orderID
 
     
     useEffect(()=>{
-                axios.post('https://hero-cycle-server-production.up.railway.app/create-payment-intent', {price})
+                axios.post('http://localhost:4000/create-payment-intent', {price})
             .then(data => {
                 console.log('Data ',data)
                if(data.data?.clientSecret){
@@ -24,8 +25,8 @@ const CheckOutForm = ({orderID,OrderPrice}) => {
                 console.log('Client ',data.data.clientSecret)
             }
             })
-            .catch(e => console.log('Error ',e.message))
-    },[price]);
+            .catch(e => console.log('Error Mssg ',e.message))
+    },[price,getOrderId]);
 
 
     const handleSubmit=async(event)=>{
@@ -64,14 +65,14 @@ if(intentError){
 }
 else{
     setCardError('');
-    console.log(paymentIntent);
+    console.log("Payment Intet",paymentIntent);
     setTransactionId(paymentIntent.id)
     setSuccess('Payment Completed')
     const transationDetails={
     transactionID:paymentIntent.id,
     getOrderId:getOrderId
 }
-    axios.put(`https://hero-cycle-server-production.up.railway.app/payment/order`, {transationDetails})
+    axios.put(`http://localhost:4000/payment/order`, {transationDetails})
             .then(result => {
                 if (result.data.status === 401) { console.log('Payment Failed') }
                 else {

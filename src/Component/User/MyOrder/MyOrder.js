@@ -11,7 +11,7 @@ const MyOrder = (props) => {
 
     useEffect(() => {
         setLoadingSingleCycle(true)
-        axios.get(`https://hero-cycle-server-production.up.railway.app/cycles/${getOrder.cycleID}`)
+        axios.get(`http://localhost:4000/cycles/${getOrder.cycleID}`)
             .then(result => {
                 // console.log(result)
                 if (result?.data?.model) {

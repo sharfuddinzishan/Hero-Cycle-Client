@@ -2,13 +2,13 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 const SingleOrderDetails = (props) => {
     // const orderID = props.orderID
-    const getSingleOrderDetails = props.getSingleOrderDetails || {}
+    const getSingleOrderDetails = props?.getSingleOrderDetails || {}
     const [getSingleCycleInfo, setSingleCycleInfo] = useState({});
     let [loadingCycleInfo, setLoadingCycleInfo] = useState(true);
 
     useEffect(() => {
         setLoadingCycleInfo(true)
-        axios.get(`https://hero-cycle-server-production.up.railway.app/cycles/${getSingleOrderDetails.cycleID}`)
+        axios.get(`http://localhost:4000/cycles/${getSingleOrderDetails.cycleID}`)
             .then(result => {
                 if (result?.data?.model) {
                     setSingleCycleInfo(result.data);

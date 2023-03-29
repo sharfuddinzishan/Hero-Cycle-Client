@@ -66,7 +66,7 @@ const OrderNow = () => {
     
     useEffect(() => {
         setLoading(true)
-        axios.get(`https://hero-cycle-server-production.up.railway.app/cycles/${cycleID}`)
+        axios.get(`http://localhost:4000/cycles/${cycleID}`)
             .then(result => {
                 if (result?.data?.model) {
                     setSingleCycleInfo(result.data);
@@ -101,7 +101,7 @@ const OrderNow = () => {
         setSuccess(false)
         setError(false)
 
-        axios.post('https://hero-cycle-server-production.up.railway.app/order', copyCycle, { headers })
+        axios.post('http://localhost:4000/order', copyCycle, { headers })
             .then(result => {
                 if (result.data.status === 401) { setError(true) }
                 else {

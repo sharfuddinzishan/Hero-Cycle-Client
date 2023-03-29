@@ -4,22 +4,22 @@ import { Link } from 'react-router-dom';
 import { useParams } from 'react-router';
 import useAuth from '../../Hooks/useAuth';
 
-const SingleBicycleDetails = () => {
-    const { isAdmin, user } = useAuth()
-    // let cycleID;
-    let { bicycleID:cycleID } = useParams();
+const SingleBicycleDetails = (props) => {
+ const { isAdmin, user } = useAuth()
+    let cycleID;
+    let { bicycleID } = useParams();
 
-    // if (props.cycleID)
-    //     cycleID = props.cycleID
-    // else
-    //     cycleID = bicycleID
+    if (props?.cycleid)
+        cycleID = props?.cycleid
+    else
+        cycleID = bicycleID
 
     const [getSingleCycleInfo, setSingleCycleInfo] = useState({});
     let [loading, setLoading] = useState(true);
 
     useEffect(() => {
         setLoading(true)
-        axios.get(`https://hero-cycle-server-production.up.railway.app/cycles/${cycleID}`)
+        axios.get(`http://localhost:4000/cycles/${cycleID}`)
             .then(result => {
                 if (result?.data?.model) {
                     setSingleCycleInfo(result.data);
@@ -33,11 +33,8 @@ const SingleBicycleDetails = () => {
 
     return (
         <div className="container p-3">
-            <h1 className="text-center">Details of <span className="fw-bold text-info">{getSingleCycleInfo?.model}</span></h1>
+            <h1 className="text-center">Details of <span className="fw-bold text-info">{getSingleCycleInfo.model}</span></h1>
             <div className="row">
-                {
-                    loading && <span className='fs-3 fw-bold text-info'>Loading Information.....</span>
-                }
                 {
                     !loading && <>
                         <div className="col-12 col-md-5">
