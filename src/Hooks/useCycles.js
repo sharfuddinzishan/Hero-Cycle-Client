@@ -6,7 +6,7 @@ export const useCycles = () => {
     const [loader, setLoader] = useState(false);
     useEffect(() => {
         setLoader(true);
-        let url = "http://localhost:4000/cycles";
+        let url = "https://hero-cycle-server-production.up.railway.app/cycles";
         axios.get(url)
             .then(result => {
                 if (result.data) {

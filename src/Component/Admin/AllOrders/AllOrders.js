@@ -17,7 +17,7 @@ const AllOrders = () => {
 
     useEffect(() => {
         setLoader(true);
-        let url = `http://localhost:4000/user/orders`
+        let url = `https://hero-cycle-server-production.up.railway.app/user/orders`
         axios.get(url)
             .then(result => {
                 if (result.data.length) {
@@ -41,7 +41,7 @@ const AllOrders = () => {
         if (prompt === true) {
             setRefreshed(false);
             orderStatus === 'cancel' ||
-                axios.put(`http://localhost:4000/order/${orderID}?action=cancel`, { headers })
+                axios.put(`https://hero-cycle-server-production.up.railway.app/order/${orderID}?action=cancel`, { headers })
                     .then(result => {
                         if (result.data.modifiedCount === '0') { alert('Failed'); setRefreshed(false) }
                         else setRefreshed(true);
@@ -58,7 +58,7 @@ const AllOrders = () => {
         if (prompt === true) {
             setRefreshed(false);
             // console.log(headers)
-            axios.delete(`http://localhost:4000/order/${orderID}`, { headers })
+            axios.delete(`https://hero-cycle-server-production.up.railway.app/order/${orderID}`, { headers })
                 .then(result => {
                     if (result.data.deletedCount === '0') { alert('Failed'); setRefreshed(false) }
                     else setRefreshed(true);

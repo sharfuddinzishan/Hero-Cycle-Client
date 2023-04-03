@@ -21,7 +21,7 @@ const MakeAdmin = () => {
             "authorization": 'Bearer ' + token
         };
         const user = { email, pass }
-        axios.put('http://localhost:4000/user/admin', user, { headers })
+        axios.put('https://hero-cycle-server-production.up.railway.app/user/admin', user, { headers })
             .then(result => {
                 console.log(result)
                 if (result.data.modifiedCount) {
