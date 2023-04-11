@@ -12,7 +12,7 @@ const Bicycles = (props) => {
     }
     useEffect(() => {
         setLoader(true);
-        let url = `https://hero-cycle-server-production.up.railway.app/cycles?limit=${limitShowCycle}`;
+        let url = `http://localhost:4000/cycles?limit=${limitShowCycle}`;
         axios.get(url)
             .then(result => {
                 if (result.data) {

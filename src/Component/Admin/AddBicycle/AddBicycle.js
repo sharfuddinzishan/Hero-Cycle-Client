@@ -17,11 +17,6 @@ const AddBicycle = () => {
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState(false);
 
-    // Get Token 
-    const token = localStorage.getItem('tokenID')
-    let headers = {
-        "authorization": 'Bearer ' + token
-    };
     // Take Input from Form 
     const handleInput = e => {
         const copyCycle = { ...singleCycle };
@@ -32,7 +27,7 @@ const AddBicycle = () => {
         e.preventDefault();
         setSuccess(false)
         setError(false)
-        axios.post('https://hero-cycle-server-production.up.railway.app/cycle', singleCycle, { headers })
+        axios.post('http://localhost:4000/cycle', singleCycle)
             .then(result => {
                 if (result.data.status === 401) { setError(true) }
                 else { setSuccess(true) }

@@ -97,7 +97,7 @@ const Dashboard = () => {
                                             All Orders
                                         </NavLink>
                                     </li>
-                                    <li className="bg-info mb-1 text-center">
+                                    {/* <li className="bg-info mb-1 text-center">
                                         <NavLink className="nav-link text-light"
                                             to={`${url}/admin/makeadmin`}
                                             activeStyle={{
@@ -106,7 +106,7 @@ const Dashboard = () => {
                                             }}>
                                             Make Admin
                                         </NavLink>
-                                    </li>
+                                    </li> */}
                                     <span className="w-100 d-block border border-2 border-top" ></span>
                                 </>
                             }

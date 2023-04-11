@@ -12,7 +12,7 @@ const UpdateBicycles = (props) => {
         setLoading(true)
         setSuccess(false)
         setError(false)
-        axios.get(`https://hero-cycle-server-production.up.railway.app/cycles/${getCycleID}`)
+        axios.get(`http://localhost:4000/cycles/${getCycleID}`)
             .then(result => {
                 if (result?.data?.model) {
                     setSingleCycleInfo(result.data);
@@ -39,7 +39,7 @@ const UpdateBicycles = (props) => {
         setSuccess(false)
         setError(false)
         setRefreshed(false)
-        axios.put('https://hero-cycle-server-production.up.railway.app/cycle', getSingleCycleInfo, { headers })
+        axios.put('http://localhost:4000/cycle', getSingleCycleInfo, { headers })
             .then(result => {
                 if (result.data.status === 401) { setError(true) }
                 else {
