@@ -17,7 +17,7 @@ const CheckOutForm = ({orderID,OrderPrice}) => {
 
     
     useEffect(()=>{
-                axios.post('http://localhost:4000/create-payment-intent', {price})
+                axios.post('https://hero-cycle-server-side-production.up.railway.app/create-payment-intent', {price})
             .then(data => {
                 console.log('Data ',data)
                if(data.data?.clientSecret){
@@ -54,7 +54,7 @@ const CheckOutForm = ({orderID,OrderPrice}) => {
     payment_method: {
       card,
       billing_details: {
-        email: 'sharfuddin.ahamed@gmail.com'
+        email: 'sharfuddin.ahamed91@gmail.com'
       },
     },
   },
@@ -72,7 +72,7 @@ else{
     transactionID:paymentIntent.id,
     getOrderId:getOrderId
 }
-    axios.put(`http://localhost:4000/payment/order`, {transationDetails})
+    axios.put(`https://hero-cycle-server-side-production.up.railway.app/payment/order`, {transationDetails})
             .then(result => {
                 if (result.data.status === 401) { console.log('Payment Failed') }
                 else {
@@ -107,7 +107,7 @@ else{
           },
         }}
       />
-      <button className='btn btn-success btn-sm mt-3' type="submit" disabled={!stripe || !clientSecret}>
+      <button className='btn btn-success btn-sm mt-3' type="submit" disabled={!stripe || !clientSecret|| success}>
         Pay
       </button>
     </form>

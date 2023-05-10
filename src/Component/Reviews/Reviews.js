@@ -7,7 +7,7 @@ const Reviews = () => {
     const [reviews, setReviews] = useState([]);
     useEffect(() => {
         setLoadingReview(false);
-        axios.get('http://localhost:4000/reviews')
+        axios.get('https://hero-cycle-server-side-production.up.railway.app/reviews')
             .then(result => {
                 if (result.data) {
                     setReviews(result.data)

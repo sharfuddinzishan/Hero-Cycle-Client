@@ -19,7 +19,7 @@ const SingleBicycleDetails = (props) => {
 
     useEffect(() => {
         setLoading(true)
-        axios.get(`http://localhost:4000/cycles/${cycleID}`)
+        axios.get(`https://hero-cycle-server-side-production.up.railway.app/cycles/${cycleID}`)
             .then(result => {
                 if (result?.data?.model) {
                     setSingleCycleInfo(result.data);

@@ -30,7 +30,7 @@ const AddReviews = () => {
         };
         setSuccess(false)
         setError(false)
-        axios.post('http://localhost:4000/reviews', getReview, { headers })
+        axios.post('https://hero-cycle-server-side-production.up.railway.app/reviews', getReview, { headers })
             .then(result => {
                 // console.log('Revies ', result)
                 if (!result.data.insertedId) { setError(true) }

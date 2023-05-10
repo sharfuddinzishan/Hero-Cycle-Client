@@ -9,7 +9,7 @@ const MyReviews = () => {
     const [reviews, setReviews] = useState([]);
 
     useEffect(() => {
-        axios.get(`http://localhost:4000/user/reviews?email=${user?.email}`)
+        axios.get(`https://hero-cycle-server-side-production.up.railway.app/user/reviews?email=${user?.email}`)
             .then(result => {
                 if (result.data) {
                     setReviews(result.data)
@@ -32,7 +32,7 @@ const MyReviews = () => {
         else {
             // setReviewAction(false);
             setLoadingReview(true);
-            axios.delete(`http://localhost:4000/reviews/${reviewID}`, { headers })
+            axios.delete(`https://hero-cycle-server-side-production.up.railway.app/reviews/${reviewID}`, { headers })
                 .then(result => {
                     if (result.data.deletedCount) {
                         // setReviewAction(true);
