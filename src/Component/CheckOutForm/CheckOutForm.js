@@ -54,7 +54,7 @@ const CheckOutForm = ({orderID,OrderPrice}) => {
     payment_method: {
       card,
       billing_details: {
-        email: 'sharfuddin.ahamed91@gmail.com'
+        email: 'sharfuddin.ahamed@gmail.com'
       },
     },
   },
